@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="docTitle">Product — Manju Tools and Machines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div class="announce">Free shipping on orders above <strong>₹2,000</strong> · Authorised dealer for INGCO, Jadever, Taparia &amp; Stanley</div>
+
+<header class="site-header">
+  <div class="container header-row">
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <a href="index.html" class="logo">
+      <img src="images/logo-mark.png" alt="Manju Tools and Machines">
+      <span class="logo-text">MANJU TOOLS<span>AND MACHINES</span></span>
+    </a>
+    <form class="search-form" id="siteSearchForm" role="search">
+      <select class="search-select" aria-label="Search category">
+        <option>All Categories</option>
+      </select>
+      <input type="text" class="search-input" placeholder="Search for drills, wrenches, welders…" aria-label="Search products">
+      <button type="submit" class="search-submit" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+    </form>
+    <div class="header-actions">
+      <a href="#" class="header-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <span class="hide-mobile">Account</span>
+      </a>
+      <a href="wishlist.html" class="header-action">
+        <span class="count-badge" data-wishlist-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
+        <span class="hide-mobile">Wishlist</span>
+      </a>
+      <a href="cart.html" class="header-action">
+        <span class="count-badge" data-cart-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        <span class="hide-mobile">Cart</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav class="category-bar">
+  <div class="container category-bar-inner" style="position:relative;">
+    <a href="category.html" class="all-cats-trigger" id="allCatsTrigger">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M3 6h18M3 12h18M3 18h18"/></svg> All Categories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+    <div id="categoryBarLinks" style="display:flex;height:100%;"></div>
+    <div class="mega-menu" id="megaMenu"></div>
+  </div>
+</nav>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer-backdrop"></div>
+  <div class="mobile-drawer-panel">
+    <div class="mobile-drawer-head">
+      <span>Browse Categories</span>
+      <button id="mobileDrawerClose" aria-label="Close menu">✕</button>
+    </div>
+    <div id="mobileDrawerBody"></div>
+  </div>
+</div>
+
+<main id="main">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb" id="breadcrumb"></nav>
+
+    <div class="pdp-layout" id="pdpLayout"></div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="specs">Specifications</button>
+      <button class="tab-btn" data-tab="reviews">Reviews</button>
+      <button class="tab-btn" data-tab="shipping">Shipping &amp; Returns</button>
+    </div>
+    <div class="tab-panel active" id="tab-specs">
+      <table class="spec-table" id="specTable"></table>
+    </div>
+    <div class="tab-panel" id="tab-reviews">
+      <div class="review-summary" id="reviewSummary"></div>
+      <div id="reviewList"></div>
+    </div>
+    <div class="tab-panel" id="tab-shipping">
+      <div style="max-width:600px; font-size:13.5px; color:var(--text-soft); line-height:1.8;">
+        <p><strong style="color:var(--text);">Delivery:</strong> Most orders dispatch within 24 hours and arrive in 2–5 business days depending on location within Tamil Nadu.</p>
+        <p style="margin-top:12px;"><strong style="color:var(--text);">Returns:</strong> 7-day replacement window for manufacturing defects. Tool must be unused and in original packaging with all accessories.</p>
+        <p style="margin-top:12px;"><strong style="color:var(--text);">Warranty:</strong> Covered under manufacturer warranty as an authorised dealer — keep your invoice for claims.</p>
+      </div>
+    </div>
+
+    <section class="section" style="padding-top:8px;">
+      <div class="section-head">
+        <h2>You may also like</h2>
+      </div>
+      <div class="product-grid" id="relatedGrid"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div>
+      <div class="footer-brand-mark">
+        <img src="images/logo-mark.png" alt="">
+        <span>MANJU TOOLS AND MACHINES</span>
+      </div>
+      <p class="footer-desc">Authorised dealer for INGCO, Jadever, Taparia and Stanley. Power tools, hand tools, measuring instruments and workshop machines for trade and home use.</p>
+      <div class="footer-brands">
+        <span class="chip">INGCO</span>
+        <span class="chip">Jadever</span>
+        <span class="chip">Taparia</span>
+        <span class="chip">Stanley</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul id="footerCatList"></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Customer Care</h4>
+      <ul>
+        <li><a href="#">Track Your Order</a></li>
+        <li><a href="#">Shipping &amp; Delivery</a></li>
+        <li><a href="#">Returns &amp; Warranty</a></li>
+        <li><a href="#">Bulk / Trade Pricing</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Manju Tools</a></li>
+        <li><a href="#">Store Location</a></li>
+        <li><a href="#">Become a Dealer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Manju Tools and Machines. This is a design concept — not the live store.</span>
+    <span>Chennai, Tamil Nadu</span>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+  const product = getProduct(id) || PRODUCTS[0];
+  const brand = getBrand(product.brand);
+  const category = getCategory(product.category);
+
+  document.getElementById("docTitle").textContent = `${product.name} — Manju Tools and Machines`;
+
+  document.getElementById("breadcrumb").innerHTML = `
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 6l6 6-6 6"/></svg>
+    <a href="category.html?cat=${category.id}">${category.name}</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 6l6 6-6 6"/></svg>
+    <span>${product.name}</span>
+  `;
+
+  const off = discountPct(product.price, product.mrp);
+  const wished = Store.isWishlisted(product.id);
+  const lowStock = product.stock > 0 && product.stock <= 15;
+
+  document.getElementById("pdpLayout").innerHTML = `
+    <div>
+      <div class="pdp-gallery-main">${productIcon(product)}</div>
+      <div class="pdp-thumbs">
+        <div class="pdp-thumb active">${productIcon(product)}</div>
+        <div class="pdp-thumb">${productIcon(product)}</div>
+        <div class="pdp-thumb">${productIcon(product)}</div>
+      </div>
+    </div>
+
+    <div class="pdp-title-block">
+      ${product.badge ? `<span class="badge badge--gold" style="margin-bottom:10px;display:inline-block;">${product.badge}</span>` : ""}
+      <h1>${product.name}</h1>
+      <div class="pdp-meta-row">
+        <span style="font-weight:700;color:var(--text);">${brand.name}</span>
+        <span>·</span>
+        <span class="rating-pill">${product.rating} ${ICONS.star.replace('viewBox="0 0 24 24"', 'width="10" height="10"')}</span>
+        <span>${product.reviews} ratings</span>
+      </div>
+      <p class="pdp-desc">${product.desc}</p>
+      <table class="spec-table">
+        ${Object.entries(product.specs).slice(0, 4).map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join("")}
+      </table>
+    </div>
+
+    <div class="buy-box-col">
+      <div class="buy-box">
+        <div class="buy-box-price-row">
+          <span class="price-now nums">${formatINR(product.price)}</span>
+          ${product.mrp ? `<span class="price-mrp nums">${formatINR(product.mrp)}</span>` : ""}
+          ${off ? `<span class="price-off">${off}% off</span>` : ""}
+        </div>
+        <span style="font-size:12px;color:var(--text-faint);">Inclusive of all taxes</span>
+
+        <div class="buy-box-stock ${lowStock ? "low" : ""}">
+          <span class="stock-dot" style="background:${product.stock > 0 ? (lowStock ? "#B8790A" : "var(--green)") : "var(--red)"};"></span>
+          ${product.stock > 0 ? (lowStock ? `Only ${product.stock} left in stock` : "In Stock") : "Out of Stock"}
+        </div>
+
+        <div class="qty-stepper">
+          <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+          <input type="text" id="qtyInput" value="1" inputmode="numeric" aria-label="Quantity">
+          <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+        </div>
+
+        <div class="buy-box-actions">
+          <button class="btn btn--primary btn--full btn--lg" id="addToCartBtn" ${product.stock === 0 ? "disabled" : ""}>Add to Cart</button>
+          <button class="btn btn--dark btn--full" id="buyNowBtn" ${product.stock === 0 ? "disabled" : ""}>Buy Now</button>
+          <button class="btn btn--outline btn--full" id="wishlistToggleBtn">
+            ${wished ? "Remove from Wishlist" : "Add to Wishlist"}
+          </button>
+        </div>
+
+        <div class="buy-box-note">
+          ${ICONS.truck.replace('width="24" height="24"', '')}
+          <span>Free delivery on orders above ₹2,000. Estimated delivery in 2–5 business days.</span>
+        </div>
+        <div class="buy-box-note">
+          ${ICONS.shield.replace('width="24" height="24"', '')}
+          <span>Genuine product, backed by manufacturer warranty via an authorised dealer.</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Qty stepper
+  const qtyInput = document.getElementById("qtyInput");
+  document.getElementById("qtyMinus").addEventListener("click", () => {
+    qtyInput.value = Math.max(1, Number(qtyInput.value) - 1);
+  });
+  document.getElementById("qtyPlus").addEventListener("click", () => {
+    qtyInput.value = Math.min(product.stock, Number(qtyInput.value) + 1);
+  });
+  document.getElementById("addToCartBtn").addEventListener("click", () => {
+    Store.addToCart(product.id, Number(qtyInput.value) || 1);
+  });
+  document.getElementById("buyNowBtn").addEventListener("click", () => {
+    Store.addToCart(product.id, Number(qtyInput.value) || 1);
+    window.location.href = "cart.html";
+  });
+  document.getElementById("wishlistToggleBtn").addEventListener("click", (e) => {
+    Store.toggleWishlist(product.id);
+    e.target.textContent = Store.isWishlisted(product.id) ? "Remove from Wishlist" : "Add to Wishlist";
+  });
+
+  // Full spec table (tab)
+  document.getElementById("specTable").innerHTML = Object.entries(product.specs)
+    .map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join("");
+
+  // Reviews (placeholder aggregate + a few sample reviews)
+  const sampleReviews = [
+    { name: "Rajesh K.", date: "3 weeks ago", stars: 5, text: "Solid build quality, handled a full day on site without any issues. Battery life is decent for the price." },
+    { name: "Vignesh M.", date: "1 month ago", stars: 4, text: "Good tool overall. Wish it came with a second battery in the box, but performance is as expected." },
+    { name: "Priya S.", date: "2 months ago", stars: 5, text: "Bought this for my workshop, works great. Delivery was quick and the packaging was solid." },
+  ];
+  const dist = [65, 20, 8, 4, 3];
+  document.getElementById("reviewSummary").innerHTML = `
+    <div class="review-score">
+      <b>${product.rating}</b>
+      ${renderStars(product.rating)}
+      <div style="font-size:12px;color:var(--text-faint);margin-top:4px;">${product.reviews} ratings</div>
+    </div>
+    <div class="review-bars">
+      ${[5,4,3,2,1].map((n, i) => `
+        <div class="review-bar-row">
+          <span>${n}★</span>
+          <div class="review-bar-track"><div class="review-bar-fill" style="width:${dist[i]}%;"></div></div>
+          <span>${dist[i]}%</span>
+        </div>`).join("")}
+    </div>
+  `;
+  document.getElementById("reviewList").innerHTML = sampleReviews.map(r => `
+    <div class="review-item">
+      <div class="review-item-head">
+        <span class="review-item-name">${r.name}</span>
+        <span class="review-item-date">${r.date}</span>
+      </div>
+      ${renderStars(r.stars)}
+      <p style="margin-top:6px;">${r.text}</p>
+    </div>
+  `).join("");
+
+  // Tabs
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  // Related products
+  const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+  renderProductGrid(document.getElementById("relatedGrid"), related.length ? related : PRODUCTS.filter(p => p.id !== product.id).slice(0, 4));
+
+  refreshHeaderBadges();
+})();
+</script>
+
+</body>
+</html>
