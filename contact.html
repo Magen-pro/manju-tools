@@ -121,6 +121,34 @@
   <div class="container">
     <div class="contact-layout">
 
+      <div class="contact-form-col">
+        <div class="contact-form-card">
+          <h2>Send us a message</h2>
+          <p class="contact-form-sub">For general questions, quotes, or service enquiries. We'll get back to you by phone or email.</p>
+
+          <div class="form-row">
+            <label>Your name
+              <input type="text" placeholder="Full name">
+            </label>
+            <label>Phone number
+              <input type="tel" placeholder="10-digit mobile number">
+            </label>
+          </div>
+          <label class="form-row-single">Email
+            <input type="email" placeholder="you@example.com">
+          </label>
+          <div class="form-row-single">
+            <span class="form-label">What's this about?</span>
+            <div class="dd" id="enquiryTopicSelect"></div>
+          </div>
+          <label class="form-row-single">Message
+            <textarea rows="5" placeholder="Tell us what you need &#8212; for a repair, include the tool's brand and model if you know it."></textarea>
+          </label>
+          <button type="button" class="btn btn--primary btn--lg btn--full" id="contactSubmitBtn">Send message</button>
+          <p class="contact-form-note">This is a design concept &#8212; the form isn't connected yet. Call or WhatsApp for a real reply.</p>
+        </div>
+      </div>
+
       <div class="contact-info-col">
         <div class="contact-info-block">
           <div class="contact-info-icon">
@@ -166,39 +194,6 @@
           </div>
         </div>
       </div>
-
-      <div class="contact-form-col">
-        <div class="contact-form-card">
-          <h2>Send us a message</h2>
-          <p class="contact-form-sub">For general questions, quotes, or service enquiries. We'll get back to you by phone or email.</p>
-
-          <div class="form-row">
-            <label>Your name
-              <input type="text" placeholder="Full name">
-            </label>
-            <label>Phone number
-              <input type="tel" placeholder="10-digit mobile number">
-            </label>
-          </div>
-          <label class="form-row-single">Email
-            <input type="email" placeholder="you@example.com">
-          </label>
-          <label class="form-row-single">What's this about?
-            <select>
-              <option>General enquiry</option>
-              <option>Service or repair enquiry</option>
-              <option>Bulk / trade order</option>
-              <option>Warranty claim</option>
-              <option>Something else</option>
-            </select>
-          </label>
-          <label class="form-row-single">Message
-            <textarea rows="5" placeholder="Tell us what you need &#8212; for a repair, include the tool's brand and model if you know it."></textarea>
-          </label>
-          <button type="button" class="btn btn--primary btn--lg btn--full" id="contactSubmitBtn">Send message</button>
-          <p class="contact-form-note">This is a design concept &#8212; the form isn't connected yet. Call or WhatsApp for a real reply.</p>
-        </div>
-      </div>
     </div>
 
     <section class="section--tight">
@@ -218,7 +213,7 @@
     <div>
       <div class="footer-brand-mark">
         <img src="images/logo-mark.png" alt="">
-        <span>Manju Tools<br>and Machines</span>
+        <span>Manju Tools<span class="footer-brand-sub">and Machines</span></span>
       </div>
       <p class="footer-desc">Authorised dealer for INGCO, Jadever, Taparia and Stanley. Power tools, hand tools, measuring instruments and workshop machines for trade and home use.</p>
       <div class="footer-brands">
@@ -262,6 +257,18 @@
 <script src="js/store.js"></script>
 <script src="js/ui.js"></script>
 <script>
+
+buildDropdown(document.getElementById("enquiryTopicSelect"), {
+  options: [
+    { value: "general", label: "General enquiry" },
+    { value: "service", label: "Service or repair enquiry" },
+    { value: "trade", label: "Bulk / trade order" },
+    { value: "warranty", label: "Warranty claim" },
+    { value: "other", label: "Something else" },
+  ],
+  value: "general",
+  onChange: () => {},
+});
 
 document.getElementById("contactSubmitBtn").addEventListener("click", () => {
   Toast.show("This is a concept demo — the form isn't connected yet. Try WhatsApp or call instead.");
