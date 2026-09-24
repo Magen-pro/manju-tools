@@ -116,32 +116,29 @@
   gap: 12px;
 }
 .brand-card {
-  background: var(--panel);
-  border: 1px solid var(--line-dark);
+  background: var(--white);
+  border: 1px solid transparent;
   border-radius: var(--r);
-  padding: 18px 20px;
+  padding: 16px 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 76px;
-  transition: border-color .16s var(--ease), background .16s var(--ease), transform .12s var(--ease);
+  transition: transform .14s var(--ease), box-shadow .14s var(--ease);
 }
-.brand-card:hover { border-color: var(--gold); background: var(--panel-2); transform: translateY(-2px); }
+.brand-card:hover { transform: translateY(-3px); box-shadow: var(--sh-3); }
 .brand-card img {
-  max-height: 34px;
+  max-height: 38px;
   max-width: 100%;
   width: auto;
   object-fit: contain;
 }
-.brand-card img.mono-on-dark {
-  filter: brightness(0) invert(1);
-  opacity: .92;
-}
+.brand-card img.is-square-mark { max-height: 54px; }
 .brand-card-text {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 17px;
-  color: var(--white);
+  color: var(--ink);
   letter-spacing: -0.02em;
 }
 

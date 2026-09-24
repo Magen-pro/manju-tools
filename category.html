@@ -380,6 +380,16 @@
   }
   paintSliderRange();
 
+  // Dragging fires "input" continuously — repainting the whole product
+  // grid on every pixel of movement is what made this feel laggy/frantic.
+  // The handle position and number boxes update immediately (cheap), but
+  // the actual filtered re-render is debounced until the drag settles.
+  let sliderRenderTimer = null;
+  function scheduleFilteredRender() {
+    clearTimeout(sliderRenderTimer);
+    sliderRenderTimer = setTimeout(render, 220);
+  }
+
   function onSliderInput(moved) {
     let lo = Number(sliderMin.value), hi = Number(sliderMax.value);
     // Keep handles from crossing — always leave at least a sliver between them
@@ -392,10 +402,14 @@
     state.priceMax = hi >= PRICE_CEIL ? null : hi;
     inputMin.value = lo <= PRICE_FLOOR ? "" : lo;
     inputMax.value = hi >= PRICE_CEIL ? "" : hi;
-    render();
+    scheduleFilteredRender();
   }
   sliderMin.addEventListener("input", () => onSliderInput("min"));
   sliderMax.addEventListener("input", () => onSliderInput("max"));
+  // A released handle (mouse up / touch end / arrow-key commit) should
+  // reflect immediately rather than waiting out the debounce window.
+  sliderMin.addEventListener("change", () => { clearTimeout(sliderRenderTimer); render(); });
+  sliderMax.addEventListener("change", () => { clearTimeout(sliderRenderTimer); render(); });
 
   function onNumberInput() {
     let lo = inputMin.value === "" ? PRICE_FLOOR : Number(inputMin.value);
