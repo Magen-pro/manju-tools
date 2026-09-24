@@ -180,6 +180,26 @@
 
 /* Header actions */
 .header-actions { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+
+.enquire-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: var(--r-sm);
+  margin-left: 12px;
+  white-space: nowrap;
+  transition: background .14s var(--ease), transform .1s var(--ease);
+  flex-shrink: 0;
+}
+.enquire-btn svg { width: 16px; height: 16px; }
+.enquire-btn:hover { background: var(--gold-hi); }
+.enquire-btn:active { transform: scale(.97); }
+
 .header-action {
   position: relative;
   display: flex;
@@ -451,6 +471,7 @@
   .search-form { order: 3; flex-basis: 100%; height: 42px; }
   .header-action { padding: 6px 9px; }
   .header-action span.hide-mobile { display: none; }
+  .enquire-btn { display: none; }
   .category-bar { display: none; }
   .footer-top { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 28px; gap: 30px; }
   .site-footer { margin-top: 48px; }
