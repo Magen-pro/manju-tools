@@ -17,6 +17,12 @@
   --line: #E2E0D9;
   --line-soft: #EDEBE5;
   --line-dark: #2B2C30;
+  /* Foreground color for elements that are always dark regardless of
+     site theme (header nav bar, footer, hero, dark buttons/banners).
+     Deliberately NOT theme-dependent -- kept separate from --white,
+     which does change with theme (it's the card/surface color). */
+  --on-dark: #FFFFFF;
+  --on-dark-soft: #ADADB2;
 
   --text: #16171A;
   --text-soft: #56585E;
@@ -50,6 +56,56 @@
   --ease: cubic-bezier(.4, 0, .2, 1);
 }
 
+/* ---------- Dark theme ----------
+   Not an inversion: the dark background is a warm near-black (not
+   pure #000, easier on the eyes at night), cards become a raised
+   dark panel rather than staying white, and the illustration palette
+   gets its own values since --art-light was tuned to read against a
+   light card and would wash out against a dark one unchanged. Gold
+   stays gold — it already has strong contrast on dark and is the
+   brand color either way.
+------------------------------------------------------------------ */
+:root[data-theme="dark"] {
+  --gold: #F5B301;
+  --gold-hi: #FFCB47;
+  --gold-dark: #D89A00;
+  --ink: #0B0B0C;
+  --panel: #1C1D20;
+  --panel-2: #26272B;
+
+  --paper: #131315;
+  --paper-2: #1A1B1E;
+  --white: #1E1F22;
+  --line: #313236;
+  --line-soft: #26272A;
+  --line-dark: #37383C;
+
+  --text: #EEEDEB;
+  --text-soft: #ACADB2;
+  --text-faint: #797B81;
+
+  --green: #3CB86A;
+  --green-bg: #163024;
+  --amber: #E0A421;
+  --red: #E5564A;
+
+  --art-gold: #F5B301;
+  --art-dark: #3A3C42;
+  --art-metal: #8A8F98;
+  --art-light: #C4C8CE;
+  --art-black: #0A0A0B;
+
+  --sh-1: 0 1px 2px rgba(0,0,0,.3);
+  --sh-2: 0 2px 8px rgba(0,0,0,.35), 0 1px 2px rgba(0,0,0,.25);
+  --sh-3: 0 8px 28px rgba(0,0,0,.45);
+  --sh-pop: 0 16px 48px rgba(0,0,0,.55);
+}
+/* Hero already sits on a dark photo+gradient in both themes, so its
+   panel-based fallback colors don't need separate dark-mode values;
+   the same is true of the site header nav bar and footer, which are
+   --ink in both themes by design. */
+
+
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
@@ -66,7 +122,7 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   margin: 0;
-  color: var(--ink);
+  color: var(--text);
   letter-spacing: -0.018em;
   line-height: 1.18;
 }
@@ -130,11 +186,11 @@ summary::-webkit-details-marker { display: none; }
 .btn:active { transform: translateY(1px); }
 .btn--primary { background: var(--gold); color: var(--ink); }
 .btn--primary:hover { background: var(--gold-hi); }
-.btn--dark { background: var(--ink); color: var(--white); }
+.btn--dark { background: var(--ink); color: var(--on-dark); }
 .btn--dark:hover { background: #2A2B2F; }
 .btn--outline { background: transparent; border-color: var(--line); color: var(--text); }
 .btn--outline:hover { border-color: var(--ink); background: var(--white); }
-.btn--ghost-light { background: transparent; border-color: var(--line-dark); color: var(--white); }
+.btn--ghost-light { background: transparent; border-color: var(--line-dark); color: var(--on-dark); }
 .btn--ghost-light:hover { border-color: #565860; background: rgba(255,255,255,.04); }
 .btn--full { width: 100%; }
 .btn--lg { padding: 14px 24px; font-size: 15px; }
@@ -237,7 +293,7 @@ summary::-webkit-details-marker { display: none; }
   bottom: 30px;
   transform: translate(-50%, 14px);
   background: var(--ink);
-  color: var(--white);
+  color: var(--on-dark);
   padding: 13px 22px;
   border-radius: var(--r);
   font-size: 13.5px;

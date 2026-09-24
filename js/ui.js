@@ -258,6 +258,34 @@ function buildDropdown(container, { options, value, onChange }) {
   };
 }
 
+/* ---------- Theme toggle ----------
+   The actual theme is applied inline in <head> (see partials.py) to
+   avoid a flash of the wrong theme before this script loads. This
+   function only wires the button: reflects the current state, flips
+   it on click, and persists the choice.
+------------------------------------------------------------------ */
+function initThemeToggle() {
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+  function reflectState() {
+    const dark = currentTheme() === "dark";
+    btn.setAttribute("aria-pressed", dark ? "true" : "false");
+    btn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+  }
+  reflectState();
+
+  btn.addEventListener("click", () => {
+    const next = currentTheme() === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("mtm_theme", next); } catch (e) {}
+    reflectState();
+  });
+}
+
 /* ---------- Rail scroll buttons ----------
    Wires up any .rail-nav buttons on the page (data-rail-prev /
    data-rail-next hold the id of the .rail they control), scrolling
@@ -334,6 +362,7 @@ Store.onChange(() => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  initThemeToggle();
   buildMegaMenu();
   buildMobileDrawer();
   buildCategoryBar();
