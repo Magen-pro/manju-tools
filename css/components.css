@@ -27,17 +27,35 @@
 
 /* ---------- Hero ----------
    The hero leads with the catalogue itself rather than a stat block:
-   a headline, a plain-language promise, and the tool illustrations
-   that carry the site's visual identity.
+   a headline, a plain-language promise, and a real photo of the
+   kind of tool wall this shop actually stocks.
 ------------------------------------------------- */
-.hero { background: var(--ink); color: var(--white); overflow: hidden; }
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
+.hero {
+  position: relative;
+  color: var(--white);
+  overflow: hidden;
+  min-height: 460px;
+  display: flex;
   align-items: center;
-  gap: 48px;
-  padding: 60px 28px 64px;
 }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(100deg, rgba(11,11,12,.96) 0%, rgba(11,11,12,.88) 32%, rgba(11,11,12,.55) 62%, rgba(11,11,12,.32) 100%),
+    linear-gradient(0deg, rgba(11,11,12,.55) 0%, rgba(11,11,12,0) 40%),
+    url("../images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center 38%;
+  z-index: 0;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 76px 28px 80px;
+  width: 100%;
+}
+.hero-content { max-width: 620px; }
 .hero h1 {
   font-size: clamp(30px, 4vw, 46px);
   font-weight: 800;
@@ -45,13 +63,15 @@
   letter-spacing: -0.028em;
   color: var(--white);
   max-width: 15ch;
+  text-shadow: 0 2px 16px rgba(0,0,0,.35);
 }
 .hero p.lead {
   margin-top: 20px;
   font-size: 16px;
-  color: #ADADB2;
+  color: #D8D8DB;
   max-width: 46ch;
   line-height: 1.65;
+  text-shadow: 0 1px 8px rgba(0,0,0,.3);
 }
 .hero-cta-row { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
 
@@ -61,35 +81,17 @@
   gap: 10px 26px;
   margin-top: 36px;
   padding-top: 26px;
-  border-top: 1px solid var(--line-dark);
+  border-top: 1px solid rgba(255,255,255,.16);
 }
 .hero-assurance {
   display: flex;
   align-items: center;
   gap: 9px;
   font-size: 13px;
-  color: #ADADB2;
+  color: #E4E4E6;
+  text-shadow: 0 1px 6px rgba(0,0,0,.3);
 }
 .hero-assurance svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
-
-/* Hero tool wall — four illustrations on a dark grid */
-.hero-art {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.hero-art-cell {
-  background: var(--panel);
-  border: 1px solid var(--line-dark);
-  border-radius: var(--r-lg);
-  aspect-ratio: 1;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-art-cell:nth-child(2),
-.hero-art-cell:nth-child(3) { background: var(--panel-2); }
 
 /* ---------- Brand strip ---------- */
 .brand-strip { background: var(--ink); }
@@ -157,12 +159,12 @@
 }
 .cat-card:hover { border-color: var(--ink); box-shadow: var(--sh-2); transform: translateY(-2px); }
 .cat-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--r-sm);
+  width: 80px;
+  height: 80px;
+  border-radius: var(--r);
   background: var(--paper);
   flex-shrink: 0;
-  padding: 8px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1007,8 +1009,8 @@ a.contact-info-value:hover { color: var(--gold-dark); }
 }
 @media (max-width: 1000px) {
   .cat-grid, .product-grid { grid-template-columns: repeat(3, 1fr); }
-  .hero-inner { grid-template-columns: 1fr; padding: 44px 20px 48px; gap: 36px; }
-  .hero-art { max-width: 380px; }
+  .hero-inner { padding: 48px 20px 52px; }
+  .hero { min-height: 400px; }
   .shop-layout { grid-template-columns: 1fr; }
   .filter-panel { display: none; }
   .filter-panel.open {
@@ -1048,6 +1050,12 @@ a.contact-info-value:hover { color: var(--gold-dark); }
   .section { padding-top: 40px; padding-bottom: 40px; }
 }
 @media (max-width: 680px) {
+  .hero-bg {
+    background-image:
+      linear-gradient(180deg, rgba(11,11,12,.9) 0%, rgba(11,11,12,.82) 55%, rgba(11,11,12,.6) 100%),
+      url("../images/hero-bg.jpg");
+    background-position: center 30%;
+  }
   .cat-grid, .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .brand-grid { grid-template-columns: repeat(2, 1fr); }
   .rail .product-card { min-width: 172px; max-width: 172px; }
@@ -1055,8 +1063,8 @@ a.contact-info-value:hover { color: var(--gold-dark); }
   .product-card-body { padding: 11px 12px 12px; gap: 5px; }
   .product-card-name { font-size: 13px; min-height: 35px; }
   .price-now { font-size: 16px; }
-  .cat-card { padding: 16px 14px; gap: 10px; }
-  .cat-card-icon { width: 40px; height: 40px; padding: 7px; }
+  .cat-card { padding: 16px 14px; gap: 12px; }
+  .cat-card-icon { width: 60px; height: 60px; padding: 9px; }
   .section { padding-top: 32px; padding-bottom: 32px; }
   .section-head h2 { font-size: 20px; }
   .page-head h1 { font-size: 22px; }

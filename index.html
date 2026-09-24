@@ -91,8 +91,9 @@
 <main id="main">
 
   <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <div>
+      <div class="hero-content">
         <h1>Every tool on the van, in stock and ready.</h1>
         <p class="lead">Power tools, hand tools and workshop machines from INGCO, Jadever, Taparia and Stanley &#8212; stocked in Chennai and shipped the next working day.</p>
         <div class="hero-cta-row">
@@ -114,7 +115,6 @@
           </span>
         </div>
       </div>
-      <div class="hero-art" id="heroArt" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -341,14 +341,6 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Hero tool wall
-  const heroArt = document.getElementById("heroArt");
-  ["cordlessDrill", "grinder", "wrench", "circularSaw"].forEach(key => {
-    const cell = document.createElement("div");
-    cell.className = "hero-art-cell";
-    cell.innerHTML = ART[key];
-    heroArt.appendChild(cell);
-  });
 
   // Promo background art
   document.getElementById("promoArtA").innerHTML = ART.comboCase;
