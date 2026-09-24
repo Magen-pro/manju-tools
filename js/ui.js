@@ -12,34 +12,38 @@ function renderStars(rating) {
   return html;
 }
 
-/* ---------- Cart button markup & syncing ----------
-   Every "add to cart" control on the page carries
-   data-add-to-cart="<id>". After the cart changes, syncCartButtons()
-   rewrites each one to reflect whether that product is already in
-   the cart, so the state is consistent across cards, the product
-   page and anything rendered later.
+/* ---------- Cart control on product cards ----------
+   Every cart control on the page carries data-cart-control="<id>".
+   It renders as either an "Add to cart" button or a compact +/-
+   stepper depending on whether the product is already in the cart.
+   After the cart changes, syncCartButtons() rebuilds each one from
+   scratch, so state stays correct across cards, the product page,
+   and anything rendered later.
 ------------------------------------------------------ */
 
-function cartButtonInner(id) {
+function cartControlHTML(id) {
   const qty = Store.cartQty(id);
   if (qty > 0) {
-    return `<span class="btn-ico">${ICONS.check}</span> In cart · ${qty}`;
+    return `
+      <div class="cart-stepper" data-cart-control="${id}">
+        <button type="button" class="cart-stepper-btn" data-cart-dec="${id}" aria-label="Reduce quantity">&#8722;</button>
+        <span class="cart-stepper-qty nums" aria-live="polite">${qty} in cart</span>
+        <button type="button" class="cart-stepper-btn" data-cart-inc="${id}" aria-label="Add another">+</button>
+      </div>`;
   }
-  return "Add to cart";
+  return `
+    <div class="cart-stepper" data-cart-control="${id}">
+      <button type="button" class="btn btn--dark btn--full btn--sm" data-add-to-cart="${id}">Add to cart</button>
+    </div>`;
 }
 
-function applyCartButtonState(btn) {
-  const id = btn.dataset.addToCart;
-  const qty = Store.cartQty(id);
-  btn.innerHTML = cartButtonInner(id);
-  btn.classList.toggle("is-in-cart", qty > 0);
-  btn.setAttribute("aria-label", qty > 0
-    ? `${qty} in cart. Add another`
-    : "Add to cart");
+function applyCartControlState(wrap) {
+  const id = wrap.dataset.cartControl;
+  wrap.outerHTML = cartControlHTML(id);
 }
 
 function syncCartButtons(root) {
-  (root || document).querySelectorAll("[data-add-to-cart]").forEach(applyCartButtonState);
+  (root || document).querySelectorAll("[data-cart-control]").forEach(applyCartControlState);
 }
 
 function syncWishlistButtons(root) {
@@ -56,7 +60,6 @@ function productCardHTML(p) {
   const off = discountPct(p.price, p.mrp);
   const brand = getBrand(p.brand);
   const specEntries = Object.entries(p.specs).slice(0, 2);
-  const inCart = Store.cartQty(p.id);
   const wished = Store.isWishlisted(p.id);
   const lowStock = p.stock > 0 && p.stock <= 15;
 
@@ -88,8 +91,7 @@ function productCardHTML(p) {
       </div>
       ${lowStock ? `<div class="stock-note low">Only ${p.stock} left</div>` : ""}
       <div class="product-card-actions">
-        <button class="btn btn--dark btn--full btn--sm cart-btn ${inCart ? "is-in-cart" : ""}"
-                data-add-to-cart="${p.id}">${cartButtonInner(p.id)}</button>
+        ${cartControlHTML(p.id)}
       </div>
     </div>
   </article>`;
@@ -166,8 +168,22 @@ document.addEventListener("click", (e) => {
   if (addBtn) {
     e.preventDefault();
     Store.addToCart(addBtn.dataset.addToCart, 1);
-    addBtn.classList.add("just-added");
-    setTimeout(() => addBtn.classList.remove("just-added"), 320);
+    return;
+  }
+  const incBtn = e.target.closest("[data-cart-inc]");
+  if (incBtn) {
+    e.preventDefault();
+    const id = incBtn.dataset.cartInc;
+    Store.setQty(id, Store.cartQty(id) + 1);
+    return;
+  }
+  const decBtn = e.target.closest("[data-cart-dec]");
+  if (decBtn) {
+    e.preventDefault();
+    const id = decBtn.dataset.cartDec;
+    const next = Store.cartQty(id) - 1;
+    if (next <= 0) Store.removeFromCart(id);
+    else Store.setQty(id, next);
     return;
   }
   const wishBtn = e.target.closest("[data-wish-toggle]");

@@ -26,7 +26,7 @@
     </button>
 
     <a href="index.html" class="logo" aria-label="Manju Tools and Machines, home">
-      <img src="images/logo-mark.png" alt="">
+      <span class="logo-mark"><img src="images/logo-mark.png" alt=""></span>
       <span class="logo-text">Manju Tools<span>and Machines</span></span>
     </a>
 
@@ -243,8 +243,8 @@
         </div>
 
         <div class="buy-box-actions">
-          <button class="btn btn--primary btn--full btn--lg cart-btn" id="pdpAddBtn"
-                  data-add-to-cart="${product.id}" ${out ? "disabled" : ""}>Add to cart</button>
+          <button class="btn btn--primary btn--full btn--lg pdp-add-btn" id="pdpAddBtn"
+                  ${out ? "disabled" : ""}>Add to cart</button>
           <button class="btn btn--dark btn--full" id="buyNowBtn" ${out ? "disabled" : ""}>Buy it now</button>
           <button class="btn btn--outline btn--full" id="wishBtn" data-wish-toggle="${product.id}">Save for later</button>
         </div>
@@ -277,12 +277,17 @@
 
   // Override the generic add handler so it respects the chosen quantity
   const addBtn = document.getElementById("pdpAddBtn");
-  addBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
+  function syncAddBtnLabel() {
+    const inCart = Store.cartQty(product.id);
+    addBtn.textContent = inCart > 0 ? `Add another (${inCart} in cart)` : "Add to cart";
+  }
+  addBtn.addEventListener("click", () => {
     Store.addToCart(product.id, clampQty(qtyInput.value));
     addBtn.classList.add("just-added");
-    setTimeout(() => addBtn.classList.remove("just-added"), 320);
-  }, true);
+    setTimeout(() => addBtn.classList.remove("just-added"), 260);
+  });
+  Store.onChange(syncAddBtnLabel);
+  syncAddBtnLabel();
 
   document.getElementById("buyNowBtn").addEventListener("click", () => {
     Store.addToCart(product.id, clampQty(qtyInput.value));

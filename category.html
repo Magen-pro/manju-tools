@@ -26,7 +26,7 @@
     </button>
 
     <a href="index.html" class="logo" aria-label="Manju Tools and Machines, home">
-      <img src="images/logo-mark.png" alt="">
+      <span class="logo-mark"><img src="images/logo-mark.png" alt=""></span>
       <span class="logo-text">Manju Tools<span>and Machines</span></span>
     </a>
 
@@ -118,6 +118,12 @@
         </div>
         <div class="filter-group">
           <h4>Price</h4>
+          <div class="price-slider" id="priceSlider">
+            <div class="price-slider-track"></div>
+            <div class="price-slider-range" id="priceSliderRange"></div>
+            <input type="range" id="priceSliderMin" aria-label="Minimum price">
+            <input type="range" id="priceSliderMax" aria-label="Maximum price">
+          </div>
           <div class="price-range-row">
             <input type="number" id="priceMin" placeholder="Min" aria-label="Minimum price" min="0">
             <span style="color:var(--text-faint);">to</span>
@@ -346,14 +352,67 @@
     buildFilterLists();
   }
 
-  document.getElementById("priceMin").addEventListener("input", e => {
-    state.priceMin = e.target.value === "" ? null : Number(e.target.value);
-    render();
+  // Price bounds come from the actual catalog so the slider's range is real
+  const ALL_PRICES = PRODUCTS.map(p => p.price);
+  const PRICE_FLOOR = Math.floor(Math.min(...ALL_PRICES) / 10) * 10;
+  const PRICE_CEIL = Math.ceil(Math.max(...ALL_PRICES) / 10) * 10;
+
+  const sliderMin = document.getElementById("priceSliderMin");
+  const sliderMax = document.getElementById("priceSliderMax");
+  const sliderRange = document.getElementById("priceSliderRange");
+  const inputMin = document.getElementById("priceMin");
+  const inputMax = document.getElementById("priceMax");
+
+  [sliderMin, sliderMax].forEach(el => {
+    el.min = PRICE_FLOOR;
+    el.max = PRICE_CEIL;
   });
-  document.getElementById("priceMax").addEventListener("input", e => {
-    state.priceMax = e.target.value === "" ? null : Number(e.target.value);
+  sliderMin.value = PRICE_FLOOR;
+  sliderMax.value = PRICE_CEIL;
+  inputMin.placeholder = "Min " + formatINR(PRICE_FLOOR);
+  inputMax.placeholder = "Max " + formatINR(PRICE_CEIL);
+
+  function paintSliderRange() {
+    const lo = Number(sliderMin.value), hi = Number(sliderMax.value);
+    const pct = v => ((v - PRICE_FLOOR) / (PRICE_CEIL - PRICE_FLOOR)) * 100;
+    sliderRange.style.left = pct(lo) + "%";
+    sliderRange.style.right = (100 - pct(hi)) + "%";
+  }
+  paintSliderRange();
+
+  function onSliderInput(moved) {
+    let lo = Number(sliderMin.value), hi = Number(sliderMax.value);
+    // Keep handles from crossing — always leave at least a sliver between them
+    if (lo > hi) {
+      if (moved === "min") { lo = hi; sliderMin.value = lo; }
+      else { hi = lo; sliderMax.value = hi; }
+    }
+    paintSliderRange();
+    state.priceMin = lo <= PRICE_FLOOR ? null : lo;
+    state.priceMax = hi >= PRICE_CEIL ? null : hi;
+    inputMin.value = lo <= PRICE_FLOOR ? "" : lo;
+    inputMax.value = hi >= PRICE_CEIL ? "" : hi;
     render();
-  });
+  }
+  sliderMin.addEventListener("input", () => onSliderInput("min"));
+  sliderMax.addEventListener("input", () => onSliderInput("max"));
+
+  function onNumberInput() {
+    let lo = inputMin.value === "" ? PRICE_FLOOR : Number(inputMin.value);
+    let hi = inputMax.value === "" ? PRICE_CEIL : Number(inputMax.value);
+    lo = Math.max(PRICE_FLOOR, Math.min(lo, PRICE_CEIL));
+    hi = Math.max(PRICE_FLOOR, Math.min(hi, PRICE_CEIL));
+    if (lo > hi) [lo, hi] = [hi, lo];
+    sliderMin.value = lo;
+    sliderMax.value = hi;
+    paintSliderRange();
+    state.priceMin = lo <= PRICE_FLOOR ? null : lo;
+    state.priceMax = hi >= PRICE_CEIL ? null : hi;
+    render();
+  }
+  inputMin.addEventListener("change", onNumberInput);
+  inputMax.addEventListener("change", onNumberInput);
+
   document.getElementById("filterInStock").addEventListener("change", e => {
     state.inStock = e.target.checked;
     render();
@@ -366,6 +425,9 @@
     state.cats.clear(); state.brands.clear();
     state.sub = null; state.inStock = false;
     state.priceMin = null; state.priceMax = null; state.q = "";
+    sliderMin.value = PRICE_FLOOR;
+    sliderMax.value = PRICE_CEIL;
+    paintSliderRange();
     document.getElementById("priceMin").value = "";
     document.getElementById("priceMax").value = "";
     document.getElementById("filterInStock").checked = false;
