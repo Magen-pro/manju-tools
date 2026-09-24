@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Wishlist — Manju Tools and Machines</title>
+<title>Saved tools — Manju Tools and Machines</title>
+<meta name="description" content="Tools you have saved for later.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/logo-mark.png">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
@@ -14,69 +17,88 @@
 
 <a href="#main" class="skip-link">Skip to content</a>
 
-<div class="announce">Free shipping on orders above <strong>₹2,000</strong> · Authorised dealer for INGCO, Jadever, Taparia &amp; Stanley</div>
+<div class="announce">Free delivery on orders over <strong>&#8377;2,000</strong> &nbsp;&#183;&nbsp; Authorised dealer for INGCO, Jadever, Taparia and Stanley</div>
 
 <header class="site-header">
   <div class="container header-row">
-    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-    <a href="index.html" class="logo">
-      <img src="images/logo-mark.png" alt="Manju Tools and Machines">
-      <span class="logo-text">MANJU TOOLS<span>AND MACHINES</span></span>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mobileDrawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <a href="index.html" class="logo" aria-label="Manju Tools and Machines, home">
+      <img src="images/logo-mark.png" alt="">
+      <span class="logo-text">Manju Tools<span>and Machines</span></span>
     </a>
+
     <form class="search-form" id="siteSearchForm" role="search">
-      <select class="search-select" aria-label="Search category"><option>All Categories</option></select>
-      <input type="text" class="search-input" placeholder="Search for drills, wrenches, welders…" aria-label="Search products">
-      <button type="submit" class="search-submit" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <select class="search-select" aria-label="Search within">
+        <option>All categories</option>
+        <option>Power tools</option>
+        <option>Hand tools</option>
+        <option>Measuring</option>
+        <option>Safety gear</option>
+      </select>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search drills, wrenches, welders&#8230;" aria-label="Search products">
+      <button type="submit" class="search-submit" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
     </form>
+
     <div class="header-actions">
       <a href="#" class="header-action">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
         <span class="hide-mobile">Account</span>
       </a>
       <a href="wishlist.html" class="header-action">
-        <span class="count-badge" data-wishlist-count>0</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
-        <span class="hide-mobile">Wishlist</span>
+        <span class="count-badge nums" data-wishlist-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
+        <span class="hide-mobile">Saved</span>
       </a>
       <a href="cart.html" class="header-action">
-        <span class="count-badge" data-cart-count>0</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        <span class="count-badge nums" data-cart-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
         <span class="hide-mobile">Cart</span>
       </a>
     </div>
   </div>
 </header>
 
-<nav class="category-bar">
-  <div class="container category-bar-inner" style="position:relative;">
-    <a href="category.html" class="all-cats-trigger" id="allCatsTrigger">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M3 6h18M3 12h18M3 18h18"/></svg> All Categories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg>
-    </a>
+<nav class="category-bar" aria-label="Product categories">
+  <div class="container category-bar-inner">
+    <button class="all-cats-trigger" id="allCatsTrigger" aria-expanded="false" aria-controls="megaMenu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      All categories
+      <span class="chev" style="display:flex;width:14px;height:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
     <div id="categoryBarLinks" style="display:flex;height:100%;"></div>
-    <div class="mega-menu" id="megaMenu"></div>
   </div>
+  <div class="mega-menu" id="megaMenu"></div>
 </nav>
 
 <div class="mobile-drawer" id="mobileDrawer">
   <div class="mobile-drawer-backdrop"></div>
   <div class="mobile-drawer-panel">
     <div class="mobile-drawer-head">
-      <span>Browse Categories</span>
-      <button id="mobileDrawerClose" aria-label="Close menu">✕</button>
+      <span>Browse categories</span>
+      <button id="mobileDrawerClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
     </div>
     <div id="mobileDrawerBody"></div>
   </div>
 </div>
 
 <main id="main">
-  <div class="container" style="padding-top:24px;padding-bottom:60px;">
-    <h1 style="font-size:24px;font-weight:800;margin-bottom:20px;">Your Wishlist</h1>
+  <div class="container" style="padding-top:26px;padding-bottom:64px;">
+    <div class="page-head"><h1>Saved tools</h1></div>
 
     <div id="wishEmptyState" class="empty-state" style="display:none;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
-      <h3>Your wishlist is empty</h3>
-      <p>Tap the heart icon on any product to save it here.</p>
-      <a href="category.html" class="btn btn--primary" style="margin-top:16px;">Shop All Tools</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
+      <h3>Nothing saved yet</h3>
+      <p>Tap the heart on any tool to keep it here for later.</p>
+      <a href="category.html" class="btn btn--primary" style="margin-top:18px;">Browse the catalogue</a>
     </div>
 
     <div class="product-grid" id="wishGrid"></div>
@@ -88,24 +110,41 @@
     <div>
       <div class="footer-brand-mark">
         <img src="images/logo-mark.png" alt="">
-        <span>MANJU TOOLS AND MACHINES</span>
+        <span>Manju Tools<br>and Machines</span>
       </div>
-      <p class="footer-desc">Authorised dealer for INGCO, Jadever, Taparia and Stanley.</p>
+      <p class="footer-desc">Authorised dealer for INGCO, Jadever, Taparia and Stanley. Power tools, hand tools, measuring instruments and workshop machines for trade and home use.</p>
       <div class="footer-brands">
-        <span class="chip">INGCO</span><span class="chip">Jadever</span><span class="chip">Taparia</span><span class="chip">Stanley</span>
+        <span class="chip">INGCO</span>
+        <span class="chip">Jadever</span>
+        <span class="chip">Taparia</span>
+        <span class="chip">Stanley</span>
       </div>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul id="footerCatList"></ul></div>
-    <div class="footer-col"><h4>Customer Care</h4><ul>
-      <li><a href="#">Track Your Order</a></li><li><a href="#">Shipping &amp; Delivery</a></li>
-      <li><a href="#">Returns &amp; Warranty</a></li><li><a href="#">Contact Us</a></li>
-    </ul></div>
-    <div class="footer-col"><h4>Company</h4><ul>
-      <li><a href="#">About Manju Tools</a></li><li><a href="#">Store Location</a></li>
-    </ul></div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul id="footerCatList"></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Track an order</a></li>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">Returns and warranty</a></li>
+        <li><a href="#">Trade pricing</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Visit the store</a></li>
+        <li><a href="#">Become a dealer</a></li>
+      </ul>
+    </div>
   </div>
   <div class="container footer-bottom">
-    <span>© 2026 Manju Tools and Machines. This is a design concept — not the live store.</span>
+    <span>&#169; 2026 Manju Tools and Machines &#183; Design concept, not the live store</span>
     <span>Chennai, Tamil Nadu</span>
   </div>
 </footer>
@@ -115,23 +154,25 @@
 <script src="js/store.js"></script>
 <script src="js/ui.js"></script>
 <script>
+
 (function () {
   function render() {
     const items = Store.wishlistItems();
-    const emptyState = document.getElementById("wishEmptyState");
+    const empty = document.getElementById("wishEmptyState");
     const grid = document.getElementById("wishGrid");
     if (!items.length) {
-      emptyState.style.display = "block";
+      empty.style.display = "block";
       grid.style.display = "none";
       return;
     }
-    emptyState.style.display = "none";
+    empty.style.display = "none";
     grid.style.display = "grid";
     renderProductGrid(grid, items);
   }
   Store.onChange(render);
   render();
 })();
+
 </script>
 
 </body>

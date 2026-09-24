@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop All Tools — Manju Tools and Machines</title>
+<title>Shop all tools — Manju Tools and Machines</title>
+<meta name="description" content="Browse power tools, hand tools, measuring instruments and safety gear from INGCO, Jadever, Taparia and Stanley.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/logo-mark.png">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
@@ -14,57 +17,74 @@
 
 <a href="#main" class="skip-link">Skip to content</a>
 
-<div class="announce">Free shipping on orders above <strong>₹2,000</strong> · Authorised dealer for INGCO, Jadever, Taparia &amp; Stanley</div>
+<div class="announce">Free delivery on orders over <strong>&#8377;2,000</strong> &nbsp;&#183;&nbsp; Authorised dealer for INGCO, Jadever, Taparia and Stanley</div>
 
 <header class="site-header">
   <div class="container header-row">
-    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-    <a href="index.html" class="logo">
-      <img src="images/logo-mark.png" alt="Manju Tools and Machines">
-      <span class="logo-text">MANJU TOOLS<span>AND MACHINES</span></span>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mobileDrawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <a href="index.html" class="logo" aria-label="Manju Tools and Machines, home">
+      <img src="images/logo-mark.png" alt="">
+      <span class="logo-text">Manju Tools<span>and Machines</span></span>
     </a>
-    <form class="search-form" id="siteSearchForm" role="search">
-      <select class="search-select" aria-label="Search category">
-        <option>All Categories</option>
+
+    <form class="search-form" id="siteSearchForm" role="search" data-local-search="1">
+      <select class="search-select" aria-label="Search within">
+        <option>All categories</option>
+        <option>Power tools</option>
+        <option>Hand tools</option>
+        <option>Measuring</option>
+        <option>Safety gear</option>
       </select>
-      <input type="text" class="search-input" id="searchInput" placeholder="Search for drills, wrenches, welders…" aria-label="Search products">
-      <button type="submit" class="search-submit" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search drills, wrenches, welders&#8230;" aria-label="Search products">
+      <button type="submit" class="search-submit" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
     </form>
+
     <div class="header-actions">
       <a href="#" class="header-action">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
         <span class="hide-mobile">Account</span>
       </a>
       <a href="wishlist.html" class="header-action">
-        <span class="count-badge" data-wishlist-count>0</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
-        <span class="hide-mobile">Wishlist</span>
+        <span class="count-badge nums" data-wishlist-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
+        <span class="hide-mobile">Saved</span>
       </a>
       <a href="cart.html" class="header-action">
-        <span class="count-badge" data-cart-count>0</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        <span class="count-badge nums" data-cart-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
         <span class="hide-mobile">Cart</span>
       </a>
     </div>
   </div>
 </header>
 
-<nav class="category-bar">
-  <div class="container category-bar-inner" style="position:relative;">
-    <a href="category.html" class="all-cats-trigger" id="allCatsTrigger">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M3 6h18M3 12h18M3 18h18"/></svg> All Categories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg>
-    </a>
+<nav class="category-bar" aria-label="Product categories">
+  <div class="container category-bar-inner">
+    <button class="all-cats-trigger" id="allCatsTrigger" aria-expanded="false" aria-controls="megaMenu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      All categories
+      <span class="chev" style="display:flex;width:14px;height:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
     <div id="categoryBarLinks" style="display:flex;height:100%;"></div>
-    <div class="mega-menu" id="megaMenu"></div>
   </div>
+  <div class="mega-menu" id="megaMenu"></div>
 </nav>
 
 <div class="mobile-drawer" id="mobileDrawer">
   <div class="mobile-drawer-backdrop"></div>
   <div class="mobile-drawer-panel">
     <div class="mobile-drawer-head">
-      <span>Browse Categories</span>
-      <button id="mobileDrawerClose" aria-label="Close menu">✕</button>
+      <span>Browse categories</span>
+      <button id="mobileDrawerClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
     </div>
     <div id="mobileDrawerBody"></div>
   </div>
@@ -74,18 +94,17 @@
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="index.html">Home</a>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M9 6l6 6-6 6"/></svg>
-      <span id="breadcrumbCurrent">All Tools</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+      <span id="breadcrumbCurrent">All tools</span>
     </nav>
 
-    <div style="margin-bottom:18px;">
-      <h1 id="pageTitle" style="font-size:26px;font-weight:800;">All Tools</h1>
-      <p id="pageSubtitle" style="font-size:13.5px;color:var(--text-soft);margin-top:4px;"></p>
+    <div class="page-head">
+      <h1 id="pageTitle">All tools</h1>
+      <p id="pageSubtitle"></p>
     </div>
 
     <div class="shop-layout">
-      <!-- Filter panel -->
-      <aside class="filter-panel" id="filterPanel">
+      <aside class="filter-panel" id="filterPanel" aria-label="Filters">
         <div class="filter-group">
           <h4>Filters <button class="clear-filters" id="clearFilters">Clear all</button></h4>
         </div>
@@ -98,36 +117,35 @@
           <div id="filterBrandList"></div>
         </div>
         <div class="filter-group">
-          <h4>Price Range</h4>
+          <h4>Price</h4>
           <div class="price-range-row">
-            <input type="number" id="priceMin" placeholder="Min">
-            <span style="color:var(--text-faint);">–</span>
-            <input type="number" id="priceMax" placeholder="Max">
+            <input type="number" id="priceMin" placeholder="Min" aria-label="Minimum price" min="0">
+            <span style="color:var(--text-faint);">to</span>
+            <input type="number" id="priceMax" placeholder="Max" aria-label="Maximum price" min="0">
           </div>
         </div>
         <div class="filter-group">
           <h4>Availability</h4>
           <label class="filter-option">
             <input type="checkbox" id="filterInStock">
-            In Stock Only
+            In stock only
           </label>
         </div>
-        <div class="filter-group" style="display:flex; gap:8px;">
+        <div class="filter-group">
           <button class="btn btn--dark btn--full btn--sm" id="applyFiltersMobile">Show results</button>
         </div>
       </aside>
 
-      <!-- Product grid -->
       <div>
         <div class="active-filter-chips" id="activeChips"></div>
         <div class="shop-toolbar">
           <span class="count-label" id="resultsCount">0 products</span>
-          <select class="sort-select" id="sortSelect">
-            <option value="relevance">Sort: Relevance</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Highest Rated</option>
-            <option value="discount">Biggest Discount</option>
+          <select class="sort-select" id="sortSelect" aria-label="Sort products">
+            <option value="relevance">Sort by relevance</option>
+            <option value="price-low">Price, low to high</option>
+            <option value="price-high">Price, high to low</option>
+            <option value="rating">Highest rated</option>
+            <option value="discount">Biggest discount</option>
           </select>
         </div>
         <div class="product-grid" id="productGrid"></div>
@@ -136,7 +154,7 @@
   </div>
 
   <button class="filter-fab" id="filterFab">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
     Filters
   </button>
 </main>
@@ -146,7 +164,7 @@
     <div>
       <div class="footer-brand-mark">
         <img src="images/logo-mark.png" alt="">
-        <span>MANJU TOOLS AND MACHINES</span>
+        <span>Manju Tools<br>and Machines</span>
       </div>
       <p class="footer-desc">Authorised dealer for INGCO, Jadever, Taparia and Stanley. Power tools, hand tools, measuring instruments and workshop machines for trade and home use.</p>
       <div class="footer-brands">
@@ -161,26 +179,26 @@
       <ul id="footerCatList"></ul>
     </div>
     <div class="footer-col">
-      <h4>Customer Care</h4>
+      <h4>Help</h4>
       <ul>
-        <li><a href="#">Track Your Order</a></li>
-        <li><a href="#">Shipping &amp; Delivery</a></li>
-        <li><a href="#">Returns &amp; Warranty</a></li>
-        <li><a href="#">Bulk / Trade Pricing</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Track an order</a></li>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">Returns and warranty</a></li>
+        <li><a href="#">Trade pricing</a></li>
+        <li><a href="#">Contact us</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="#">About Manju Tools</a></li>
-        <li><a href="#">Store Location</a></li>
-        <li><a href="#">Become a Dealer</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Visit the store</a></li>
+        <li><a href="#">Become a dealer</a></li>
       </ul>
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© 2026 Manju Tools and Machines. This is a design concept — not the live store.</span>
+    <span>&#169; 2026 Manju Tools and Machines &#183; Design concept, not the live store</span>
     <span>Chennai, Tamil Nadu</span>
   </div>
 </footer>
@@ -190,20 +208,19 @@
 <script src="js/store.js"></script>
 <script src="js/ui.js"></script>
 <script>
+
 (function () {
   const params = new URLSearchParams(location.search);
-  let state = {
-    cat: params.get("cat") || null,
+  const state = {
     sub: params.get("sub") || null,
-    brand: params.get("brand") || null,
     q: params.get("q") || "",
     deal: params.get("deal") || null,
-    sort: params.get("sort") === "bestseller" ? "relevance" : "relevance",
+    sort: "relevance",
     priceMin: null,
     priceMax: null,
     inStock: false,
-    selectedCats: new Set(params.get("cat") ? [params.get("cat")] : []),
-    selectedBrands: new Set(params.get("brand") ? [params.get("brand")] : []),
+    cats: new Set(params.get("cat") ? [params.get("cat")] : []),
+    brands: new Set(params.get("brand") ? [params.get("brand")] : []),
   };
 
   const grid = document.getElementById("productGrid");
@@ -211,41 +228,36 @@
   const pageTitle = document.getElementById("pageTitle");
   const pageSubtitle = document.getElementById("pageSubtitle");
   const breadcrumbCurrent = document.getElementById("breadcrumbCurrent");
+  const catList = document.getElementById("filterCategoryList");
+  const brandList = document.getElementById("filterBrandList");
 
   function buildFilterLists() {
-    const catList = document.getElementById("filterCategoryList");
     catList.innerHTML = CATEGORIES.map(c => {
       const count = PRODUCTS.filter(p => p.category === c.id).length;
-      return `
-      <label class="filter-option">
-        <input type="checkbox" data-filter="cat" value="${c.id}" ${state.selectedCats.has(c.id) ? "checked" : ""}>
-        ${c.name} <span class="count">${count}</span>
+      return `<label class="filter-option">
+        <input type="checkbox" data-filter="cat" value="${c.id}" ${state.cats.has(c.id) ? "checked" : ""}>
+        ${c.name} <span class="count nums">${count}</span>
       </label>`;
     }).join("");
 
-    const brandList = document.getElementById("filterBrandList");
     brandList.innerHTML = BRANDS.map(b => {
       const count = PRODUCTS.filter(p => p.brand === b.id).length;
-      return `
-      <label class="filter-option">
-        <input type="checkbox" data-filter="brand" value="${b.id}" ${state.selectedBrands.has(b.id) ? "checked" : ""}>
-        ${b.name} <span class="count">${count}</span>
+      return `<label class="filter-option">
+        <input type="checkbox" data-filter="brand" value="${b.id}" ${state.brands.has(b.id) ? "checked" : ""}>
+        ${b.name} <span class="count nums">${count}</span>
       </label>`;
     }).join("");
-
-    catList.addEventListener("change", onFilterChange);
-    brandList.addEventListener("change", onFilterChange);
   }
 
-  function onFilterChange(e) {
+  // Delegated so the lists can be re-rendered freely
+  document.addEventListener("change", (e) => {
     const input = e.target;
-    if (input.dataset.filter === "cat") {
-      input.checked ? state.selectedCats.add(input.value) : state.selectedCats.delete(input.value);
-    } else if (input.dataset.filter === "brand") {
-      input.checked ? state.selectedBrands.add(input.value) : state.selectedBrands.delete(input.value);
-    }
+    if (!input.dataset || !input.dataset.filter) return;
+    const set = input.dataset.filter === "cat" ? state.cats : state.brands;
+    input.checked ? set.add(input.value) : set.delete(input.value);
+    if (input.dataset.filter === "cat") state.sub = null;
     render();
-  }
+  });
 
   function getFiltered() {
     let list = [...PRODUCTS];
@@ -258,89 +270,70 @@
         getBrand(p.brand).name.toLowerCase().includes(q)
       );
     }
-    if (state.deal === "hot") {
-      list = list.filter(p => discountPct(p.price, p.mrp) >= 15);
-    }
-    if (state.selectedCats.size) {
-      list = list.filter(p => state.selectedCats.has(p.category));
-    }
-    if (state.selectedBrands.size) {
-      list = list.filter(p => state.selectedBrands.has(p.brand));
-    }
-    if (state.sub) {
-      list = list.filter(p => p.sub === state.sub);
-    }
-    if (state.priceMin != null && !isNaN(state.priceMin)) {
-      list = list.filter(p => p.price >= state.priceMin);
-    }
-    if (state.priceMax != null && !isNaN(state.priceMax)) {
-      list = list.filter(p => p.price <= state.priceMax);
-    }
-    if (state.inStock) {
-      list = list.filter(p => p.stock > 0);
-    }
+    if (state.deal === "hot") list = list.filter(p => discountPct(p.price, p.mrp) >= 15);
+    if (state.cats.size) list = list.filter(p => state.cats.has(p.category));
+    if (state.brands.size) list = list.filter(p => state.brands.has(p.brand));
+    if (state.sub) list = list.filter(p => p.sub === state.sub);
+    if (state.priceMin != null) list = list.filter(p => p.price >= state.priceMin);
+    if (state.priceMax != null) list = list.filter(p => p.price <= state.priceMax);
+    if (state.inStock) list = list.filter(p => p.stock > 0);
 
-    switch (state.sort) {
-      case "price-low": list.sort((a, b) => a.price - b.price); break;
-      case "price-high": list.sort((a, b) => b.price - a.price); break;
-      case "rating": list.sort((a, b) => b.rating - a.rating); break;
-      case "discount": list.sort((a, b) => discountPct(b.price, b.mrp) - discountPct(a.price, a.mrp)); break;
-      default: break;
-    }
+    if (state.sort === "price-low") list.sort((a, b) => a.price - b.price);
+    else if (state.sort === "price-high") list.sort((a, b) => b.price - a.price);
+    else if (state.sort === "rating") list.sort((a, b) => b.rating - a.rating);
+    else if (state.sort === "discount") list.sort((a, b) => discountPct(b.price, b.mrp) - discountPct(a.price, a.mrp));
+
     return list;
   }
 
   function updateTitle() {
+    let title = "All tools", crumb = "All tools", sub = "Everything in the catalogue";
     if (state.sub) {
-      pageTitle.textContent = state.sub;
-      breadcrumbCurrent.textContent = state.sub;
-      pageSubtitle.textContent = `Browsing ${state.sub}`;
-    } else if (state.selectedCats.size === 1) {
-      const cat = getCategory([...state.selectedCats][0]);
-      pageTitle.textContent = cat ? cat.name : "All Tools";
-      breadcrumbCurrent.textContent = cat ? cat.name : "All Tools";
-      pageSubtitle.textContent = cat ? `${cat.sub.length} sub-categories` : "";
+      title = state.sub; crumb = state.sub; sub = "";
     } else if (state.q) {
-      pageTitle.textContent = `Results for "${state.q}"`;
-      breadcrumbCurrent.textContent = "Search Results";
-      pageSubtitle.textContent = "";
+      title = `Results for \u201c${state.q}\u201d`; crumb = "Search"; sub = "";
     } else if (state.deal === "hot") {
-      pageTitle.textContent = "Hot Deals";
-      breadcrumbCurrent.textContent = "Hot Deals";
-      pageSubtitle.textContent = "Limited-time discounted tools";
-    } else {
-      pageTitle.textContent = "All Tools";
-      breadcrumbCurrent.textContent = "All Tools";
-      pageSubtitle.textContent = "Browse the full catalog";
+      title = "This week's deals"; crumb = "Deals"; sub = "Reduced while stock lasts";
+    } else if (state.cats.size === 1) {
+      const cat = getCategory([...state.cats][0]);
+      if (cat) { title = cat.name; crumb = cat.name; sub = `${cat.sub.length} types in this category`; }
     }
+    pageTitle.textContent = title;
+    breadcrumbCurrent.textContent = crumb;
+    pageSubtitle.textContent = sub;
+    pageSubtitle.style.display = sub ? "" : "none";
+    document.title = `${title} — Manju Tools and Machines`;
   }
 
+  const X_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+
   function renderChips() {
-    const chipsWrap = document.getElementById("activeChips");
+    const wrap = document.getElementById("activeChips");
     const chips = [];
-    state.selectedCats.forEach(id => {
+    state.cats.forEach(id => {
       const c = getCategory(id);
-      chips.push({ label: c ? c.name : id, clear: () => state.selectedCats.delete(id) });
+      chips.push({ label: c ? c.name : id, clear: () => state.cats.delete(id) });
     });
-    state.selectedBrands.forEach(id => {
+    state.brands.forEach(id => {
       const b = getBrand(id);
-      chips.push({ label: b ? b.name : id, clear: () => state.selectedBrands.delete(id) });
+      chips.push({ label: b ? b.name : id, clear: () => state.brands.delete(id) });
     });
     if (state.sub) chips.push({ label: state.sub, clear: () => { state.sub = null; } });
-    if (state.inStock) chips.push({ label: "In Stock Only", clear: () => { state.inStock = false; } });
+    if (state.inStock) chips.push({ label: "In stock only", clear: () => {
+      state.inStock = false;
+      document.getElementById("filterInStock").checked = false;
+    }});
+    if (state.q) chips.push({ label: `\u201c${state.q}\u201d`, clear: () => {
+      state.q = "";
+      document.getElementById("searchInput").value = "";
+    }});
 
-    chipsWrap.innerHTML = chips.map((c, i) => `
-      <span class="active-filter-chip">
-        ${c.label}
-        <button data-chip-clear="${i}" aria-label="Remove filter">✕</button>
-      </span>
-    `).join("");
+    wrap.innerHTML = chips.map((c, i) =>
+      `<span class="active-filter-chip">${c.label}<button data-chip="${i}" aria-label="Remove ${c.label} filter">${X_ICON}</button></span>`
+    ).join("");
 
-    chipsWrap.querySelectorAll("[data-chip-clear]").forEach((btn, i) => {
-      btn.addEventListener("click", () => {
-        chips[i].clear();
-        render();
-      });
+    wrap.querySelectorAll("[data-chip]").forEach(btn => {
+      btn.addEventListener("click", () => { chips[Number(btn.dataset.chip)].clear(); render(); });
     });
   }
 
@@ -353,58 +346,55 @@
     buildFilterLists();
   }
 
-  // Price inputs
-  document.getElementById("priceMin").addEventListener("input", (e) => {
-    state.priceMin = e.target.value ? Number(e.target.value) : null;
+  document.getElementById("priceMin").addEventListener("input", e => {
+    state.priceMin = e.target.value === "" ? null : Number(e.target.value);
     render();
   });
-  document.getElementById("priceMax").addEventListener("input", (e) => {
-    state.priceMax = e.target.value ? Number(e.target.value) : null;
+  document.getElementById("priceMax").addEventListener("input", e => {
+    state.priceMax = e.target.value === "" ? null : Number(e.target.value);
     render();
   });
-  document.getElementById("filterInStock").addEventListener("change", (e) => {
+  document.getElementById("filterInStock").addEventListener("change", e => {
     state.inStock = e.target.checked;
     render();
   });
-  document.getElementById("sortSelect").addEventListener("change", (e) => {
+  document.getElementById("sortSelect").addEventListener("change", e => {
     state.sort = e.target.value;
     render();
   });
   document.getElementById("clearFilters").addEventListener("click", () => {
-    state.selectedCats.clear();
-    state.selectedBrands.clear();
-    state.sub = null;
-    state.inStock = false;
-    state.priceMin = null;
-    state.priceMax = null;
+    state.cats.clear(); state.brands.clear();
+    state.sub = null; state.inStock = false;
+    state.priceMin = null; state.priceMax = null; state.q = "";
     document.getElementById("priceMin").value = "";
     document.getElementById("priceMax").value = "";
     document.getElementById("filterInStock").checked = false;
+    document.getElementById("searchInput").value = "";
     render();
   });
 
-  // Mobile filter drawer
   const filterPanel = document.getElementById("filterPanel");
-  const filterFab = document.getElementById("filterFab");
-  const applyFiltersMobile = document.getElementById("applyFiltersMobile");
-  if (filterFab) filterFab.addEventListener("click", () => filterPanel.classList.add("open"));
-  if (applyFiltersMobile) applyFiltersMobile.addEventListener("click", () => filterPanel.classList.remove("open"));
+  document.getElementById("filterFab").addEventListener("click", () => {
+    filterPanel.classList.add("open");
+    document.body.style.overflow = "hidden";
+  });
+  document.getElementById("applyFiltersMobile").addEventListener("click", () => {
+    filterPanel.classList.remove("open");
+    document.body.style.overflow = "";
+  });
 
-  // Search input on this page also filters in place
+  // Search filters in place on this page rather than reloading
   const searchInput = document.getElementById("searchInput");
   if (state.q) searchInput.value = state.q;
-  const searchForm = document.getElementById("siteSearchForm");
-  searchForm.addEventListener("submit", (e) => {
+  document.getElementById("siteSearchForm").addEventListener("submit", (e) => {
     e.preventDefault();
     state.q = searchInput.value.trim();
-    state.selectedCats.clear();
-    state.sub = null;
     render();
   });
 
-  buildFilterLists();
   render();
 })();
+
 </script>
 
 </body>

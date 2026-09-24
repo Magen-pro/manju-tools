@@ -41,12 +41,15 @@ const Store = (() => {
       .map(([id, qty]) => ({ product: getProduct(id), qty }))
       .filter(item => item.product);
   }
+  function cartQty(id) {
+    return cart[id] || 0;
+  }
 
   function addToCart(id, qty = 1) {
     cart[id] = (cart[id] || 0) + qty;
     write(CART_KEY, cart);
     notify();
-    Toast.show(getProduct(id) ? `Added "${getProduct(id).name}" to cart` : "Added to cart");
+    Toast.show("Added to cart");
   }
   function setQty(id, qty) {
     if (qty <= 0) { delete cart[id]; }
@@ -89,7 +92,7 @@ const Store = (() => {
 
   return {
     onChange,
-    cartCount, cartTotal, cartItems, addToCart, setQty, removeFromCart, clearCart,
+    cartCount, cartTotal, cartItems, cartQty, addToCart, setQty, removeFromCart, clearCart,
     isWishlisted, toggleWishlist, wishlistItems, wishlistCount,
   };
 })();

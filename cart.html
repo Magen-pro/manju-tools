@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Cart — Manju Tools and Machines</title>
+<title>Your cart — Manju Tools and Machines</title>
+<meta name="description" content="Review the tools in your cart before checkout.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/logo-mark.png">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
@@ -14,82 +17,100 @@
 
 <a href="#main" class="skip-link">Skip to content</a>
 
-<div class="announce">Free shipping on orders above <strong>₹2,000</strong> · Authorised dealer for INGCO, Jadever, Taparia &amp; Stanley</div>
+<div class="announce">Free delivery on orders over <strong>&#8377;2,000</strong> &nbsp;&#183;&nbsp; Authorised dealer for INGCO, Jadever, Taparia and Stanley</div>
 
 <header class="site-header">
   <div class="container header-row">
-    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-    <a href="index.html" class="logo">
-      <img src="images/logo-mark.png" alt="Manju Tools and Machines">
-      <span class="logo-text">MANJU TOOLS<span>AND MACHINES</span></span>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mobileDrawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+
+    <a href="index.html" class="logo" aria-label="Manju Tools and Machines, home">
+      <img src="images/logo-mark.png" alt="">
+      <span class="logo-text">Manju Tools<span>and Machines</span></span>
     </a>
+
     <form class="search-form" id="siteSearchForm" role="search">
-      <select class="search-select" aria-label="Search category"><option>All Categories</option></select>
-      <input type="text" class="search-input" placeholder="Search for drills, wrenches, welders…" aria-label="Search products">
-      <button type="submit" class="search-submit" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <select class="search-select" aria-label="Search within">
+        <option>All categories</option>
+        <option>Power tools</option>
+        <option>Hand tools</option>
+        <option>Measuring</option>
+        <option>Safety gear</option>
+      </select>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search drills, wrenches, welders&#8230;" aria-label="Search products">
+      <button type="submit" class="search-submit" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
     </form>
+
     <div class="header-actions">
       <a href="#" class="header-action">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
         <span class="hide-mobile">Account</span>
       </a>
       <a href="wishlist.html" class="header-action">
-        <span class="count-badge" data-wishlist-count>0</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
-        <span class="hide-mobile">Wishlist</span>
+        <span class="count-badge nums" data-wishlist-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0-3-2.4-5.4-5.4-5.4-1.7 0-3.2.8-4.2 2.1A5.4 5.4 0 0 0 6.8 3.2c-3 0-5.4 2.4-5.4 5.4 0 6 8.9 11.2 9.8 11.7.9-.5 9.6-5.7 9.6-11.7Z"/></svg>
+        <span class="hide-mobile">Saved</span>
       </a>
       <a href="cart.html" class="header-action">
-        <span class="count-badge" data-cart-count>0</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        <span class="count-badge nums" data-cart-count>0</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
         <span class="hide-mobile">Cart</span>
       </a>
     </div>
   </div>
 </header>
 
-<nav class="category-bar">
-  <div class="container category-bar-inner" style="position:relative;">
-    <a href="category.html" class="all-cats-trigger" id="allCatsTrigger">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M3 6h18M3 12h18M3 18h18"/></svg> All Categories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg>
-    </a>
+<nav class="category-bar" aria-label="Product categories">
+  <div class="container category-bar-inner">
+    <button class="all-cats-trigger" id="allCatsTrigger" aria-expanded="false" aria-controls="megaMenu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      All categories
+      <span class="chev" style="display:flex;width:14px;height:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
     <div id="categoryBarLinks" style="display:flex;height:100%;"></div>
-    <div class="mega-menu" id="megaMenu"></div>
   </div>
+  <div class="mega-menu" id="megaMenu"></div>
 </nav>
 
 <div class="mobile-drawer" id="mobileDrawer">
   <div class="mobile-drawer-backdrop"></div>
   <div class="mobile-drawer-panel">
     <div class="mobile-drawer-head">
-      <span>Browse Categories</span>
-      <button id="mobileDrawerClose" aria-label="Close menu">✕</button>
+      <span>Browse categories</span>
+      <button id="mobileDrawerClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
     </div>
     <div id="mobileDrawerBody"></div>
   </div>
 </div>
 
 <main id="main">
-  <div class="container" style="padding-top:24px;padding-bottom:60px;">
-    <h1 style="font-size:24px;font-weight:800;margin-bottom:20px;">Your Cart</h1>
+  <div class="container" style="padding-top:26px;padding-bottom:64px;">
+    <div class="page-head"><h1>Your cart</h1></div>
 
     <div id="cartEmptyState" class="empty-state" style="display:none;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
-      <h3>Your cart is empty</h3>
-      <p>Browse the catalog and add tools you need.</p>
-      <a href="category.html" class="btn btn--primary" style="margin-top:16px;">Shop All Tools</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+      <h3>Nothing in the cart yet</h3>
+      <p>Browse the catalogue and add the tools you need.</p>
+      <a href="category.html" class="btn btn--primary" style="margin-top:18px;">Browse the catalogue</a>
     </div>
 
     <div class="cart-layout" id="cartLayout" style="display:none;">
-      <div>
-        <div id="cartLines"></div>
-      </div>
+      <div id="cartLines"></div>
       <div class="summary-card">
-        <h3 style="font-size:15px;margin-bottom:14px;">Order Summary</h3>
-        <div class="summary-row"><span id="summaryCount">0 items</span><span class="nums" id="summarySubtotal">₹0</span></div>
-        <div class="summary-row"><span>Delivery</span><span id="summaryDelivery">Free</span></div>
-        <div class="summary-row total"><span>Total</span><span class="nums" id="summaryTotal">₹0</span></div>
-        <button class="btn btn--primary btn--full btn--lg" style="margin-top:16px;" id="checkoutBtn">Proceed to Checkout</button>
-        <p style="font-size:11.5px;color:var(--text-faint);margin-top:10px;text-align:center;">This is a concept demo — checkout is not connected to payment.</p>
+        <h3>Order summary</h3>
+        <div id="freeShipHint"></div>
+        <div class="summary-row"><span id="summaryCount">0 items</span><span class="nums" id="summarySubtotal">&#8377;0</span></div>
+        <div class="summary-row"><span>Delivery</span><span class="nums" id="summaryDelivery">Free</span></div>
+        <div class="summary-row total"><span>Total</span><span class="nums" id="summaryTotal">&#8377;0</span></div>
+        <button class="btn btn--primary btn--full btn--lg" style="margin-top:18px;" id="checkoutBtn">Checkout</button>
+        <p class="summary-note">This is a design concept. Checkout is not connected to payment yet.</p>
       </div>
     </div>
   </div>
@@ -100,24 +121,41 @@
     <div>
       <div class="footer-brand-mark">
         <img src="images/logo-mark.png" alt="">
-        <span>MANJU TOOLS AND MACHINES</span>
+        <span>Manju Tools<br>and Machines</span>
       </div>
-      <p class="footer-desc">Authorised dealer for INGCO, Jadever, Taparia and Stanley.</p>
+      <p class="footer-desc">Authorised dealer for INGCO, Jadever, Taparia and Stanley. Power tools, hand tools, measuring instruments and workshop machines for trade and home use.</p>
       <div class="footer-brands">
-        <span class="chip">INGCO</span><span class="chip">Jadever</span><span class="chip">Taparia</span><span class="chip">Stanley</span>
+        <span class="chip">INGCO</span>
+        <span class="chip">Jadever</span>
+        <span class="chip">Taparia</span>
+        <span class="chip">Stanley</span>
       </div>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul id="footerCatList"></ul></div>
-    <div class="footer-col"><h4>Customer Care</h4><ul>
-      <li><a href="#">Track Your Order</a></li><li><a href="#">Shipping &amp; Delivery</a></li>
-      <li><a href="#">Returns &amp; Warranty</a></li><li><a href="#">Contact Us</a></li>
-    </ul></div>
-    <div class="footer-col"><h4>Company</h4><ul>
-      <li><a href="#">About Manju Tools</a></li><li><a href="#">Store Location</a></li>
-    </ul></div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul id="footerCatList"></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Track an order</a></li>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">Returns and warranty</a></li>
+        <li><a href="#">Trade pricing</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Visit the store</a></li>
+        <li><a href="#">Become a dealer</a></li>
+      </ul>
+    </div>
   </div>
   <div class="container footer-bottom">
-    <span>© 2026 Manju Tools and Machines. This is a design concept — not the live store.</span>
+    <span>&#169; 2026 Manju Tools and Machines &#183; Design concept, not the live store</span>
     <span>Chennai, Tamil Nadu</span>
   </div>
 </footer>
@@ -127,17 +165,21 @@
 <script src="js/store.js"></script>
 <script src="js/ui.js"></script>
 <script>
+
 (function () {
-  function cartLineHTML(item) {
+  const FREE_SHIP = 2000;
+  const SHIP_COST = 99;
+
+  function lineHTML(item) {
     const p = item.product;
     return `
-    <div class="cart-line" data-line-id="${p.id}">
-      <div class="cart-line-media">${productIcon(p)}</div>
+    <div class="cart-line">
+      <div class="cart-line-media">${productArt(p)}</div>
       <div>
         <div class="cart-line-brand">${getBrand(p.brand).name}</div>
         <a href="product.html?id=${p.id}" class="cart-line-name">${p.name}</a>
-        <div class="qty-stepper" style="margin-top:6px;">
-          <button type="button" data-qty-minus="${p.id}" aria-label="Decrease quantity">−</button>
+        <div class="qty-stepper">
+          <button type="button" data-qty-minus="${p.id}" aria-label="Reduce quantity">&#8722;</button>
           <input type="text" value="${item.qty}" data-qty-input="${p.id}" inputmode="numeric" aria-label="Quantity">
           <button type="button" data-qty-plus="${p.id}" aria-label="Increase quantity">+</button>
         </div>
@@ -152,63 +194,72 @@
 
   function render() {
     const items = Store.cartItems();
-    const emptyState = document.getElementById("cartEmptyState");
+    const empty = document.getElementById("cartEmptyState");
     const layout = document.getElementById("cartLayout");
 
     if (!items.length) {
-      emptyState.style.display = "block";
+      empty.style.display = "block";
       layout.style.display = "none";
       return;
     }
-    emptyState.style.display = "none";
+    empty.style.display = "none";
     layout.style.display = "grid";
 
-    document.getElementById("cartLines").innerHTML = items.map(cartLineHTML).join("");
+    document.getElementById("cartLines").innerHTML = items.map(lineHTML).join("");
 
     const subtotal = Store.cartTotal();
     const count = Store.cartCount();
+    const shipping = subtotal >= FREE_SHIP ? 0 : SHIP_COST;
+
     document.getElementById("summaryCount").textContent = `${count} item${count === 1 ? "" : "s"}`;
     document.getElementById("summarySubtotal").textContent = formatINR(subtotal);
-    document.getElementById("summaryDelivery").textContent = subtotal >= 2000 ? "Free" : formatINR(99);
-    document.getElementById("summaryTotal").textContent = formatINR(subtotal + (subtotal >= 2000 ? 0 : 99));
+    document.getElementById("summaryDelivery").textContent = shipping === 0 ? "Free" : formatINR(shipping);
+    document.getElementById("summaryTotal").textContent = formatINR(subtotal + shipping);
 
-    bindLineEvents();
+    const hint = document.getElementById("freeShipHint");
+    if (shipping === 0) {
+      hint.innerHTML = `<div class="free-ship-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        Delivery is free on this order
+      </div>`;
+    } else {
+      hint.innerHTML = `<div class="free-ship-hint" style="background:var(--paper);color:var(--text-soft);">
+        Add ${formatINR(FREE_SHIP - subtotal)} more for free delivery
+      </div>`;
+    }
   }
 
-  function bindLineEvents() {
-    document.querySelectorAll("[data-qty-minus]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.dataset.qtyMinus;
-        const item = Store.cartItems().find(i => i.product.id === id);
-        if (item) Store.setQty(id, Math.max(1, item.qty - 1));
-      });
-    });
-    document.querySelectorAll("[data-qty-plus]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.dataset.qtyPlus;
-        const item = Store.cartItems().find(i => i.product.id === id);
-        if (item) Store.setQty(id, item.qty + 1);
-      });
-    });
-    document.querySelectorAll("[data-qty-input]").forEach(input => {
-      input.addEventListener("change", () => {
-        const id = input.dataset.qtyInput;
-        const val = Math.max(1, parseInt(input.value) || 1);
-        Store.setQty(id, val);
-      });
-    });
-    document.querySelectorAll("[data-remove]").forEach(btn => {
-      btn.addEventListener("click", () => Store.removeFromCart(btn.dataset.remove));
-    });
-  }
+  // Delegated so re-renders don't lose handlers
+  document.addEventListener("click", (e) => {
+    const minus = e.target.closest("[data-qty-minus]");
+    const plus = e.target.closest("[data-qty-plus]");
+    const remove = e.target.closest("[data-remove]");
+    if (minus) {
+      const id = minus.dataset.qtyMinus;
+      Store.setQty(id, Math.max(1, Store.cartQty(id) - 1));
+    } else if (plus) {
+      const id = plus.dataset.qtyPlus;
+      Store.setQty(id, Store.cartQty(id) + 1);
+    } else if (remove) {
+      Store.removeFromCart(remove.dataset.remove);
+    }
+  });
+
+  document.addEventListener("change", (e) => {
+    const input = e.target.closest("[data-qty-input]");
+    if (!input) return;
+    const n = Math.max(1, parseInt(input.value, 10) || 1);
+    Store.setQty(input.dataset.qtyInput, n);
+  });
 
   document.getElementById("checkoutBtn").addEventListener("click", () => {
-    Toast.show("This is a concept demo — checkout isn't connected yet.");
+    Toast.show("Checkout is not wired up in this concept");
   });
 
   Store.onChange(render);
   render();
 })();
+
 </script>
 
 </body>
