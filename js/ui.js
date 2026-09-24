@@ -162,7 +162,140 @@ function buildFooterCategories() {
   el.innerHTML = CATEGORIES.slice(0, 6).map(c => `<li><a href="category.html?cat=${c.id}">${c.name}</a></li>`).join("");
 }
 
-/* ---------- Global interactions ---------- */
+/* ---------- Custom dropdown component ----------
+   Replaces a native <select> with a button + panel so the open list
+   can actually be styled (a native select's open list is OS chrome
+   that CSS can't touch). Renders into an existing element (keeps its
+   classes, so .search-select / .sort-select CSS still applies) and
+   calls onChange(value) whenever the selection changes.
+------------------------------------------------------------------ */
+function buildDropdown(container, { options, value, onChange }) {
+  container.classList.add("dd");
+  container.innerHTML = `
+    <button type="button" class="dd-trigger" aria-haspopup="listbox" aria-expanded="false">
+      <span class="dd-trigger-label"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+  `;
+  const trigger = container.querySelector(".dd-trigger");
+  const label = container.querySelector(".dd-trigger-label");
+
+  // The panel is appended to <body> rather than left inside `container`,
+  // because some triggers (the search-bar scope picker) sit inside an
+  // ancestor with overflow:hidden — an absolutely-positioned child there
+  // gets silently clipped. Fixed positioning computed from the trigger's
+  // own bounding box sidesteps that entirely.
+  const panel = document.createElement("div");
+  panel.className = "dd-panel dd-panel--portal";
+  panel.setAttribute("role", "listbox");
+  document.body.appendChild(panel);
+
+  let current = value;
+
+  function renderOptions() {
+    panel.innerHTML = options.map(opt => `
+      <button type="button" class="dd-option ${opt.value === current ? "selected" : ""}"
+              role="option" aria-selected="${opt.value === current}" data-value="${opt.value}">
+        ${opt.label}
+      </button>
+    `).join("");
+    const selected = options.find(o => o.value === current);
+    label.textContent = selected ? selected.label : "";
+  }
+  renderOptions();
+
+  function positionPanel() {
+    const r = trigger.getBoundingClientRect();
+    const alignRight = container.classList.contains("sort-select");
+    panel.style.top = (r.bottom + 6) + "px";
+    if (alignRight) {
+      panel.style.left = "auto";
+      panel.style.right = (window.innerWidth - r.right) + "px";
+      panel.style.minWidth = "190px";
+    } else {
+      panel.style.left = r.left + "px";
+      panel.style.right = "auto";
+      panel.style.minWidth = Math.max(r.width, 170) + "px";
+    }
+  }
+
+  function close() {
+    container.classList.remove("open");
+    trigger.setAttribute("aria-expanded", "false");
+    panel.classList.remove("open");
+  }
+  function open() {
+    positionPanel();
+    container.classList.add("open");
+    trigger.setAttribute("aria-expanded", "true");
+    panel.classList.add("open");
+  }
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    panel.classList.contains("open") ? close() : open();
+  });
+  panel.addEventListener("click", (e) => {
+    const btn = e.target.closest(".dd-option");
+    if (!btn) return;
+    current = btn.dataset.value;
+    renderOptions();
+    close();
+    onChange(current);
+  });
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target) && !panel.contains(e.target)) close();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && panel.classList.contains("open")) { close(); trigger.focus(); }
+  });
+  window.addEventListener("scroll", () => { if (panel.classList.contains("open")) positionPanel(); }, true);
+  window.addEventListener("resize", () => { if (panel.classList.contains("open")) positionPanel(); });
+
+  return {
+    setValue(v) { current = v; renderOptions(); },
+    getValue() { return current; },
+  };
+}
+
+/* ---------- Rail scroll buttons ----------
+   Wires up any .rail-nav buttons on the page (data-rail-prev /
+   data-rail-next hold the id of the .rail they control), scrolling
+   by roughly one card-width per click and hiding a button once its
+   end of the rail is reached.
+------------------------------------------------------------------ */
+function wireRailNav() {
+  document.querySelectorAll("[data-rail-prev], [data-rail-next]").forEach(btn => {
+    const railId = btn.dataset.railPrev || btn.dataset.railNext;
+    const rail = document.getElementById(railId);
+    if (!rail || btn.dataset.railWired) return;
+    btn.dataset.railWired = "1";
+    const dir = btn.dataset.railPrev ? -1 : 1;
+    btn.addEventListener("click", () => {
+      const cardWidth = rail.querySelector(".product-card")?.offsetWidth || 244;
+      rail.scrollBy({ left: dir * (cardWidth + 16) * 2, behavior: "smooth" });
+    });
+  });
+
+  document.querySelectorAll(".rail-wrap").forEach(wrap => {
+    const rail = wrap.querySelector(".rail");
+    const prev = wrap.querySelector("[data-rail-prev]");
+    const next = wrap.querySelector("[data-rail-next]");
+    if (!rail) return;
+    function updateVisibility() {
+      const maxScroll = rail.scrollWidth - rail.clientWidth;
+      if (prev) prev.hidden = rail.scrollLeft <= 4;
+      if (next) next.hidden = maxScroll <= 4 || rail.scrollLeft >= maxScroll - 4;
+    }
+    rail.addEventListener("scroll", updateVisibility);
+    window.addEventListener("resize", updateVisibility);
+    // Rail content is filled in by the page script after this runs,
+    // so re-check shortly after load once cards have rendered.
+    updateVisibility();
+    setTimeout(updateVisibility, 300);
+  });
+}
+
 document.addEventListener("click", (e) => {
   const addBtn = e.target.closest("[data-add-to-cart]");
   if (addBtn) {
@@ -208,6 +341,21 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshHeaderBadges();
   syncCartButtons();
   syncWishlistButtons();
+
+  const searchScopeEl = document.getElementById("searchScopeSelect");
+  if (searchScopeEl) {
+    buildDropdown(searchScopeEl, {
+      options: [
+        { value: "all", label: "All categories" },
+        { value: "power", label: "Power tools" },
+        { value: "hand", label: "Hand tools" },
+        { value: "measuring", label: "Measuring" },
+        { value: "safety", label: "Safety gear" },
+      ],
+      value: "all",
+      onChange: () => {}, // cosmetic scope only — search already spans the full catalog
+    });
+  }
 
   const allCatsTrigger = document.getElementById("allCatsTrigger");
   const megaMenu = document.getElementById("megaMenu");

@@ -31,13 +31,7 @@
     </a>
 
     <form class="search-form" id="siteSearchForm" role="search" data-local-search="1">
-      <select class="search-select" aria-label="Search within">
-        <option>All categories</option>
-        <option>Power tools</option>
-        <option>Hand tools</option>
-        <option>Measuring</option>
-        <option>Safety gear</option>
-      </select>
+      <div class="search-select" id="searchScopeSelect" aria-label="Search within"></div>
       <input type="search" class="search-input" id="searchInput" placeholder="Search drills, wrenches, welders&#8230;" aria-label="Search products">
       <button type="submit" class="search-submit" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -146,13 +140,7 @@
         <div class="active-filter-chips" id="activeChips"></div>
         <div class="shop-toolbar">
           <span class="count-label" id="resultsCount">0 products</span>
-          <select class="sort-select" id="sortSelect" aria-label="Sort products">
-            <option value="relevance">Sort by relevance</option>
-            <option value="price-low">Price, low to high</option>
-            <option value="price-high">Price, high to low</option>
-            <option value="rating">Highest rated</option>
-            <option value="discount">Biggest discount</option>
-          </select>
+          <div class="sort-select" id="sortSelect" aria-label="Sort products"></div>
         </div>
         <div class="product-grid" id="productGrid"></div>
       </div>
@@ -191,7 +179,7 @@
         <li><a href="#">Delivery</a></li>
         <li><a href="#">Returns and warranty</a></li>
         <li><a href="#">Trade pricing</a></li>
-        <li><a href="#">Contact us</a></li>
+        <li><a href="contact.html">Contact us</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -431,9 +419,16 @@
     state.inStock = e.target.checked;
     render();
   });
-  document.getElementById("sortSelect").addEventListener("change", e => {
-    state.sort = e.target.value;
-    render();
+  buildDropdown(document.getElementById("sortSelect"), {
+    options: [
+      { value: "relevance", label: "Sort by relevance" },
+      { value: "price-low", label: "Price, low to high" },
+      { value: "price-high", label: "Price, high to low" },
+      { value: "rating", label: "Highest rated" },
+      { value: "discount", label: "Biggest discount" },
+    ],
+    value: state.sort,
+    onChange: (v) => { state.sort = v; render(); },
   });
   document.getElementById("clearFilters").addEventListener("click", () => {
     state.cats.clear(); state.brands.clear();
@@ -472,6 +467,11 @@
 })();
 
 </script>
+
+<a href="https://wa.me/919629885790?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20a%20tool%20on%20your%20site."
+   class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.25-4.38c0-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31s-.87.86-.87 2.07.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.25 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18s.21-1.07.14-1.18c-.06-.1-.23-.16-.48-.28s-1.47-.72-1.7-.81-.4-.13-.56.13-.64.81-.78.97-.29.19-.53.06a6.7 6.7 0 0 1-1.98-1.22 7.45 7.45 0 0 1-1.37-1.71c-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.12-.14.16-.25.24-.41.08-.16.04-.31-.02-.44-.06-.13-.56-1.4-.78-1.91-.2-.5-.41-.43-.56-.43z"/></svg>
+</a>
 
 </body>
 </html>

@@ -81,15 +81,79 @@
   transition: border-color .16s var(--ease);
 }
 .search-form:focus-within { border-color: var(--ink); }
-.search-select {
-  border: none;
+
+/* ---------- Custom dropdown (replaces native <select>) ----------
+   Used for the search-category picker and, via the same JS component,
+   the sort dropdown on the category page. A native <select>'s open
+   list is OS-rendered chrome that CSS cannot restyle, so this button
+   + absolutely-positioned panel stands in for it.
+------------------------------------------------------------------ */
+.dd {
+  position: relative;
+}
+.dd-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   background: var(--paper);
-  border-right: 1px solid var(--line);
-  padding: 0 11px;
+  border: none;
   font-size: 12.5px;
   color: var(--text-soft);
-  max-width: 135px;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
 }
+.dd-trigger svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  transition: transform .16s var(--ease);
+  color: var(--text-faint);
+}
+.dd.open .dd-trigger svg { transform: rotate(180deg); }
+.dd-panel {
+  position: fixed;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-3);
+  padding: 6px;
+  z-index: 1000;
+  display: none;
+}
+.dd-panel.open { display: block; }
+.dd-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  color: var(--text);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.dd-option:hover { background: var(--paper); }
+.dd-option.selected { background: var(--ink); color: var(--white); font-weight: 600; }
+
+/* Search-category dropdown: sits inside the search bar, borders match */
+.search-select.dd { border-right: 1px solid var(--line); }
+.search-select .dd-trigger { padding: 0 11px; height: 100%; }
+
+/* Sort dropdown: standalone control on the category toolbar */
+.sort-select.dd .dd-trigger {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--text);
+}
+.sort-select.dd .dd-trigger:hover { border-color: var(--text-faint); }
+.sort-select.dd.open .dd-trigger { border-color: var(--ink); }
 .search-select:focus { outline: none; }
 .search-input {
   flex: 1;
@@ -175,7 +239,12 @@
   flex-shrink: 0;
   white-space: nowrap;
   letter-spacing: -0.01em;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .14s var(--ease);
 }
+.all-cats-trigger:hover { background: var(--gold-hi); }
 .all-cats-trigger svg { width: 15px; height: 15px; }
 .all-cats-trigger .chev { transition: transform .18s var(--ease); }
 .all-cats-trigger[aria-expanded="true"] .chev { transform: rotate(180deg); }
@@ -183,18 +252,32 @@
 .cat-link {
   color: #C4C4C7;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0 15px;
   height: 100%;
   display: flex;
   align-items: center;
   white-space: nowrap;
   flex-shrink: 0;
+  position: relative;
   transition: color .14s var(--ease), background .14s var(--ease);
-  border-bottom: 2px solid transparent;
 }
-.cat-link:hover { color: var(--white); background: rgba(255,255,255,.05); }
-.cat-link.active { color: var(--gold); border-bottom-color: var(--gold); }
+.cat-link::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .16s var(--ease);
+}
+.cat-link:hover { color: var(--white); background: rgba(255,255,255,.06); }
+.cat-link:hover::after { transform: scaleX(1); }
+.cat-link.active { color: var(--gold); }
+.cat-link.active::after { transform: scaleX(1); }
 
 /* Mega menu */
 .mega-menu {
